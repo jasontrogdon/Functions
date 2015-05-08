@@ -1,5 +1,5 @@
 
-'@Description Opens Chrome in incognito mode
+'@Description Opens Chrome in incognito mode and navigates to a URL
 '@Documentation Chrome will not store cache and cookies
 Function ChromeIncognito(ChromePath, URL) 'Chromepath needs to be "chrome.exe"
 	Set oShell = CreateObject("wScript.shell")
