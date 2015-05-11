@@ -1,0 +1,23 @@
+'@Description Opens Chrome in incognito mode and navigates to a URL
+'@Documentation Closes open Chrome Browsers, Chrome will not store cache and cookies
+'@Prerequisites Ensure "Allow in incognito" checkbox is check in Google Chrome extenstions
+Function ChromeIncognito(ChromePath, URL) 'Chromepath needs to be "chrome.exe"
+
+	If Browser("Version:=Chrome .*").Exist(5) Then
+		Browser("Version:=Chrome .*").CloseAllTabs
+		Wait 3
+	End If
+	
+	Set oShell = CreateObject("wScript.shell")
+	oShell.AppActivate("chrome.exe")
+	varChrome =  ChromePath &" "& "-incognito " & URL
+	oShell.Run varChrome
+'	Wait 5
+	
+	If Browser("version:=Chrome .*").Exist Then
+		Reporter.ReportEvent micPass,"Launch Chrome","Chrome was launched successfully"
+	Else
+		Reporter.ReportEvent micFail,"Launch Chrome","Chrome was not launched."
+	End If
+	
+End Function
